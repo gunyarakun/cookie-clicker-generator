@@ -1,0 +1,57 @@
+<script>
+$(function() {
+  $('.image-form').on('ajax:success', function(evt, data, status) {
+    $(this).find('.user-image').attr({
+      'src': data.body,
+      'width': data.thumb_width,
+      'height': data.thumb_height
+    });
+  });
+});
+</script>
+
+<h2>画像一覧</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>オリジナル</th>
+      <!--th>画像名</th-->
+      <th>説明</th>
+      <th>画像フォーマット</th>
+      <th>解像度</th>
+      <th>置換後</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cc_images.each_pair do |cc_image_name, cc_image_info| %>
+      <tr<% if cc_image_info[:user_image].present? %> class="warning"<% end %> id="<%= cc_image_name %>">
+        <% image_size = cc_image_resize(cc_image_name, 200, 200) %>
+        <td><%= link_to image_tag("/cookie-clicker/img/#{cc_image_name}",
+          :width => image_size[:width],
+          :height => image_size[:height]
+        ), "/assets/cc_images/#{cc_image_name}" %></td>
+        <!--td><%= cc_image_name %></td-->
+        <td><%= cc_image_info[:desc] %></td>
+        <td><%= cc_image_info[:format] %></td>
+        <td><%= cc_image_info[:width] %> x <%= cc_image_info[:height] %></td>
+        <% if cc_image_info[:user_image].present? -%>
+          <td>
+            <%= render 'images/form', :image => cc_image_info[:user_image] %>
+          </td>
+          <td>
+            <%= link_to '削除', cc_image_info[:user_image], method: :delete, data: { confirm: '消しちゃってOK?' } %>
+          </td>
+        <% else %>
+          <td>
+            <%= render 'images/form', :image => Image.new(:path => cc_image_name, :cookie_clicker_id => @cookie_clicker.id) %>
+          </td>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

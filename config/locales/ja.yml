@@ -1,0 +1,54 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ja:
+  title: Cookie Clickerジェネレータ
+  create_new_cookie_clicker: '新しいCookieClickerを作る'
+  logout: 'ログアウト'
+  login_with_twitter: 'TwitterでログインしてCookieClickerを作る'
+  my_cookie_clickers: '自分が作ったCookieClicker一覧'
+  show_my_cookie_clickers: '自分が作ったCookieClickerを見る'
+  edit_my_cookie_clicker: 'CookieClickerを編集する'
+  edit_cookie_clicker_attrs: 'タイトル/公開設定'
+  helpers:
+    submit:
+      create: '登録する'
+      update: '更新する'
+      submit: '保存する'
+    page_entries_info:
+      one_page:
+        zero: "<b>該当データがありません。</b>"
+        one: "<b>1件中 1-1 件を表示</b>"
+        display_entries: '%{entry_name}の1-%{count}件を表示中 / 合計%{count}件'
+      more_pages:
+        display_entries: '%{entry_name}の%{first}-%{last}件を表示中 / 合計%{total}件'
+  activerecord:
+    attributes:
+      cookie_clicker:
+        title: 'タイトル'
+        published: '公開する'
+  views:
+    pagination:
+      first: 先頭
+      last: 最終
+      previous: 前ページ
+      next: 次ページ
+      truncate: "..."

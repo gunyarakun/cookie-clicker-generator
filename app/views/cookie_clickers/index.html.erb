@@ -1,0 +1,28 @@
+<h1><%= t('my_cookie_clickers') %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cookie_clickers.each do |cookie_clicker| %>
+      <tr>
+        <td><%= cookie_clicker.title %></td>
+        <td><%= link_to '遊ぶ', {:controller => 'cookie_clickers', :action => 'show', :trailing_slash => true, :id => cookie_clicker.id} %></td>
+        <td><%= link_to '編集', edit_cookie_clicker_path(cookie_clicker) %></td>
+        <td><%= link_to '削除', cookie_clicker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('create_new_cookie_clicker'), new_cookie_clicker_path, :class => 'btn btn-primary' %>

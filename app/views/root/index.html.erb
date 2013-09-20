@@ -1,0 +1,44 @@
+<h1><%= t('title') %></h1>
+
+<% if user_signed_in? %>
+  <%= link_to t('create_new_cookie_clicker'), new_cookie_clicker_path, :class => 'btn btn-primary' %>
+  <%= link_to t('show_my_cookie_clickers'), cookie_clickers_path, :class => 'btn btn-primary' %>
+<% else %>
+  <%= link_to t('login_with_twitter'), user_omniauth_authorize_path(:twitter), :class => 'btn btn-primary' %></li>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>作者のTwitter</th>
+      <tr></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cookie_clickers.each do |cookie_clicker| %>
+      <tr>
+        <td><%= cookie_clicker.title %></td>
+        <td>
+          <a href="https://twitter.com/<%= cookie_clicker.user.name %>">
+            @<%= cookie_clicker.user.name %>
+          </a>
+        </td>
+        <td><%= link_to '遊ぶ', {
+          :controller => 'cookie_clickers',
+          :action => 'show',
+          :trailing_slash => true,
+          :id => cookie_clicker.id
+        }, {
+          :class => 'btn btn-primary'
+        } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="pager">
+  <%= paginate @cookie_clickers %>
+</div>
+
+<% end %>

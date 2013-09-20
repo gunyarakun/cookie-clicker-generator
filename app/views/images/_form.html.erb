@@ -1,0 +1,39 @@
+<%= form_for(image, :html => { :'data-type' => 'json', :multipart => true, :class => 'image-form' }, :remote => true) do |f| %>
+  <% if image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+      <% image.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :cookie_clicker_id %>
+  <%= f.hidden_field :path %>
+
+  <% if image.body.present? %>
+    <% image_size = cc_image_resize(image.path) %>
+    <%= image_tag image.body.url,
+      :width => image_size[:width],
+      :height => image_size[:height],
+      :class => 'user-image'
+    %>
+  <% else %>
+    <%= image_tag nil,
+      :width => 0,
+      :height => 0,
+      :class => 'user-image'
+    %>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :body, :class => 'file-select' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit '差し替え', :class => 'file-upload-button' %>
+  </div>
+<% end %>

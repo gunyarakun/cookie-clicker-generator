@@ -1,0 +1,8 @@
+# Must set these keys in settings.local.yml
+twitter:
+  consumer_key: 'Must set in settings.local.yml'
+  consumer_secret: 'Must set in settings.local.yml'
+devise:
+  secret_key: 'Must set in settings.local.yml'
+secret_token:
+  secret_key_base: 'Must set in settings.local.yml'

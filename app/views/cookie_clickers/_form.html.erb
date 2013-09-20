@@ -1,0 +1,29 @@
+<%= form_for(@cookie_clicker) do |f| %>
+  <% if @cookie_clicker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cookie_clicker.errors.count, "error") %> prohibited this cookie_clicker from being saved:</h2>
+
+      <ul>
+      <% @cookie_clicker.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :user_id %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => 'form_control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :published %>
+    <%= f.check_box :published, :class => 'form_control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-primary' %>
+  </div>
+<% end %>
