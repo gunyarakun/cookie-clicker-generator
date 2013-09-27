@@ -5,6 +5,7 @@
   <%= link_to t('show_my_cookie_clickers'), cookie_clickers_path, :class => 'btn btn-primary' %>
 <% else %>
   <%= link_to t('login_with_twitter'), user_omniauth_authorize_path(:twitter), :class => 'btn btn-primary' %></li>
+<% end %>
 
 <table class="table table-striped">
   <thead>
@@ -40,5 +41,3 @@
 <div class="pager">
   <%= paginate @cookie_clickers %>
 </div>
-
-<% end %>
